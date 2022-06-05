@@ -1,6 +1,22 @@
 {
-    "dependencies": {
-      "node-fetch": "2.6"
-    }
+  "dependencies": {
+    "node-fetch": "2.6"
+  },
+  "name": "skyblock.js",
+  "version": "1.1.5",
+  "description": "An API wrapper in node.js for skyblock.net",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/AnotherPillow/skyblock.js"
+  },
+  "keywords": [
+    "skyblock"
+  ],
+  "author": "AnotherPillow",
+  "license": "ISC"
 }
-  
