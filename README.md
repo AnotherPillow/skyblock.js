@@ -1,7 +1,12 @@
-skyblock.js
+### skyblock.js
 A library for the skyblock.net api
 
-Currently only feature is to list online players.
+### Features
+- List online players on Economy, Survival and Classic.
+- Get friends of a player from their forums ID.
+- Search for forum accounts by query.
+
+### Usage
 
 Economy
 ```js
@@ -30,6 +35,13 @@ Friends
 ```js
 const sb = require("skyblock.js")
 sb.friends("<FORUMS ID>").then(data => {
+    console.log(data);
+})
+```
+Forums username search
+```js
+const sb = require("skyblock.js")
+sb.forumsSearch("<QUERY>").then(data => {
     console.log(data);
 })
 ```

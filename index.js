@@ -1,5 +1,6 @@
 const fetch = require("node-fetch");
-
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
 /*
   Hello! Welcome to the Skyblock API!
   Thanks to GreenJuzzy on Github for finding how to use some of the endpoints
@@ -88,9 +89,58 @@ async function friends(forums_id) {
   }
 }
 
+async function forumsSearch(query) {
+  const session = await fetch("https://skyblock.net/")
+  var sessionID = session.headers.raw()['set-cookie'][0].split(";")[0].split("=")[1]
+ 
+  const res = await fetch("https://skyblock.net/search/search", {
+    "credentials": "include",
+    "headers": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:106.0) Gecko/20100101 Firefox/106.0",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.5",
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Upgrade-Insecure-Requests": "1",
+        "Sec-Fetch-Dest": "document",
+        "Sec-Fetch-Mode": "navigate",
+        "Sec-Fetch-Site": "same-origin",
+        "Sec-Fetch-User": "?1",
+        "Sec-GPC": "1",
+        "coookie": `xf_session=${sessionID}`
+    },
+    "referrer": "https://skyblock.net/",
+    "body": `keywords=${query}&users=&date=&_xfToken=`,
+    "method": "POST",
+    "mode": "cors"
+  });
+  const searchRes = await fetch(res.url, {
+    headers: {
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:106.0) Gecko/20100101 Firefox/106.0",
+      "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+      "coookie": `xf_session=${sessionID}`
+    }
+  })
+  const searchHTML = await searchRes.text()
+
+  const document = new JSDOM(searchHTML).window.document;
+
+  var userResults = []
+
+  document.querySelectorAll("aside>.sidebar>div>.secondaryContent>ul>li>a.username").forEach((element) => {
+    userResults.push({
+      username: element.textContent,
+      id: element.href.split(".")[2].replace("/", "")
+    })
+  })
+  return {
+    users: userResults
+  }
+}
+
 module.exports = {
   classic,
   economy,
   survival,
-  friends
+  friends,
+  forumsSearch
 }
