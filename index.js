@@ -16,13 +16,13 @@ async function classic() {
     },
     body: "_xfRequestUri=%2F&_xfNoRedirect=1&_xfResponseType=json"
   })
-  const json = await res.json()
+  const { serverStatus } = await res.json()
 
   return {
-    online: json.online,
-    players_online: json.players_online,
-    max_players: json.max_players,
-    player_list: []
+    online: serverStatus.online,
+    players_online: serverStatus.players_online,
+    max_players: serverStatus.max_players,
+    player_list: serverStatus.player_list
   }
 }
 
@@ -37,13 +37,13 @@ async function economy() {
     },
     body: "_xfRequestUri=%2F&_xfNoRedirect=1&_xfResponseType=json"
   })
-  const json = await res.json()
+  const { serverStatus } = await res.json()
 
   return {
-    online: json.online,
-    players_online: json.players_online,
-    max_players: json.max_players,
-    player_list: []
+    online: serverStatus.online,
+    players_online: serverStatus.players_online,
+    max_players: serverStatus.max_players,
+    player_list: serverStatus.player_list
   }
 }
 
@@ -58,13 +58,13 @@ async function survival() {
     },
     body: "_xfRequestUri=%2F&_xfNoRedirect=1&_xfResponseType=json"
   })
-  const json = await res.json()
+  const { serverStatus } = await res.json()
 
   return {
-    online: json.online,
-    players_online: json.players_online,
-    max_players: json.max_players,
-    player_list: []
+    online: serverStatus.online,
+    players_online: serverStatus.players_online,
+    max_players: serverStatus.max_players,
+    player_list: serverStatus.player_list
   }
 }
 
