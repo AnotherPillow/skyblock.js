@@ -6,8 +6,8 @@ const { JSDOM } = jsdom;
   Thanks to GreenJuzzy on Github for finding how to use some of the endpoints
 */
 
-async function classic() {
-  const res = await fetch("https://skyblock.net/index.php?server-status/7/query", {
+async function skywars() {
+  const res = await fetch("https://skyblock.net/index.php?server-status/5/query", {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
@@ -138,7 +138,7 @@ async function forumsSearch(query) {
 }
 
 module.exports = {
-  classic,
+  skywars,
   economy,
   survival,
   friends,

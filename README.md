@@ -23,10 +23,10 @@ sb.survival().then(data => {
 })
 ```
 
-Classic
+Skywars
 ```js
 const sb = require("skyblock.js")
-sb.classic().then(data => {
+sb.skywars().then(data => {
     console.log(data);
 })
 ```
