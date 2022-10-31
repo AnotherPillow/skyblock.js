@@ -7,7 +7,7 @@ const { JSDOM } = jsdom;
 */
 
 async function skywars() {
-  const res = await fetch("https://skyblock.net/index.php?server-status/5/query", {
+  const res = await fetch("https://skyblock.net/index.php?server-status/7/query", {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
