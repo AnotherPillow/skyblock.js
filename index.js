@@ -163,6 +163,19 @@ async function friendsByIGN(name) {
 
   return friends
 }
+async function playerCount(server) {
+  //check if server is mineverse,skyblock or skywars
+  if (!["mineverse", "skyblock", "skywars"].includes(server)) return { error: "Invalid server" }
+
+  const res = await fetch(`https://nc.skyblock.net/playercount/group/${server}`, {
+    method: "GET",
+    headers: {
+      "Accept": "application/json, text/javascript, */*; q=0.01",
+    },
+  })
+  const {result} = await res.json()
+  return result
+}
 
 module.exports = {
   skywars,
@@ -171,5 +184,6 @@ module.exports = {
   player,
   friendsByForumsID,
   friendsByIGN,
-  forumsSearch
+  forumsSearch,
+  playerCount
 }

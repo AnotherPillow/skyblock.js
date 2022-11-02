@@ -10,21 +10,21 @@ A library for the skyblock.net api
 
 ### Usage
 
-Economy
+Current Economy info
 ```js
 const sb = require("skyblock.js")
 sb.economy().then(data => {
     console.log(data);
 })
 ```
-Survival
+Current Survival info
 ```js
 const sb = require("skyblock.js")
 sb.survival().then(data => {
     console.log(data);
 })
 ```
-Skywars
+Current Skywars info
 ```js
 const sb = require("skyblock.js")
 sb.skywars().then(data => {
@@ -57,6 +57,14 @@ Friends by forums ID
 ```js
 const sb = require("skyblock.js")
 sb.friendsByForumsID("<FORUMS ID>").then(data => {
+    console.log(data);
+})
+```
+Get current amount of players on a Noobcrew server
+```js
+const sb = require("skyblock.js")
+//Possible values: mineverse, skyblock, skywars
+sb.playerCount("<SERVER NAME>").then(data => {
     console.log(data);
 })
 ```
