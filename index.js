@@ -3,7 +3,7 @@ const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 /*
   Hello! Welcome to the Skyblock API!
-  Thanks to GreenJuzzy on Github for finding how to use some of the endpoints
+  Thanks to GreenJuzzy on Github and creationism for finding most of the endpoints!
 */
 
 async function skywars() {
@@ -69,7 +69,7 @@ async function survival() {
   }
 }
 
-async function friends(forums_id) {
+async function friendsByForumsID(forums_id) {
   const res = await fetch(`https://skyblock.net/friends-api/friends/get/${forums_id} `, {
     method: "GET",
     headers: {
@@ -137,10 +137,39 @@ async function forumsSearch(query) {
   }
 }
 
+async function player(name) {
+  const UUID = await fetch(`https://api.mojang.com/users/profiles/minecraft/${name}`, {
+    method: "GET",
+    headers: {
+      "Accept": "application/json, text/javascript, */*; q=0.01",
+    },
+  })
+
+  let UUIDdashesregex = /([a-z0-9]{8})([a-z0-9]{4})([a-z0-9]{4})([a-z0-9]{4})([a-z0-9]{12})/g
+  const { id } = await UUID.json()
+  let uuid = id.replace(UUIDdashesregex, "$1-$2-$3-$4-$5")
+
+  const res = await fetch(`https://friends.skyblock.net/api/friends/data/${uuid}`, {method: "GET",})
+
+  return await res.json()
+
+}
+
+async function friendsByIGN(name) {
+  const {forums_user_id}= await player(name)
+  console.log(forums_user_id)
+  const friends = await friendsByForumsID(forums_user_id)
+  console.log(friends)
+
+  return friends
+}
+
 module.exports = {
   skywars,
   economy,
   survival,
-  friends,
+  player,
+  friendsByForumsID,
+  friendsByIGN,
   forumsSearch
 }
