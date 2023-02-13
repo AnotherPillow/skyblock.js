@@ -70,7 +70,7 @@ async function survival() {
 }
 
 async function friendsByForumsID(forums_id) {
-  const res = await fetch(`https://skyblock.net/friends-api/friends/get/${forums_id} `, {
+  const res = await fetch(`https://skyblock.net/friends-api/friends/get/${forums_id}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
