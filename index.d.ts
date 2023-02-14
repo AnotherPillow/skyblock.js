@@ -45,7 +45,7 @@ type Player = {
 };
 
 export function skywars(): Promise<ServerInfo>
-export function economy(): Promize<ServerInfo>
+export function economy(): Promise<ServerInfo>
 export function survival(): Promise<ServerInfo>
 
 export function friendsByForumsID(forums_id: number): Promise<FriendsByID>
@@ -53,5 +53,5 @@ export function forumsSearch(query: string): Promise<SearchResult>
 
 export function player(name: string): Promise<Player>
 
-export function friendsByIGN(name: string): Promise<FriendsByIGN>
+export function friendsByIGN(name: string): Promise<FriendsByID>
 export function playerCount(server: ServerList): Promise<ServerCount>
