@@ -138,6 +138,15 @@ async function forumsSearch(query) {
 }
 
 async function player(name) {
+  
+  const uuid = await getUUID(name)
+  const res = await fetch(`https://friends.skyblock.net/api/friends/data/${uuid}`, {method: "GET",})
+
+  return await res.json()
+
+}
+
+async function getUUID(name) {
   const UUID = await fetch(`https://api.mojang.com/users/profiles/minecraft/${name}`, {
     method: "GET",
     headers: {
@@ -149,15 +158,12 @@ async function player(name) {
   const { id } = await UUID.json()
   let uuid = id.replace(UUIDdashesregex, "$1-$2-$3-$4-$5")
 
-  const res = await fetch(`https://friends.skyblock.net/api/friends/data/${uuid}`, {method: "GET",})
-
-  return await res.json()
-
+  return uuid
 }
 
 async function friendsByIGN(name) {
-  const {forums_user_id}= await player(name)
-  const friends = await friendsByForumsID(forums_user_id)
+  const uuid = await getUUID(name)
+  const friends = await friendsByUUID(uuid)
 
   return friends
 }
@@ -175,6 +181,14 @@ async function playerCount(server) {
   return result
 }
 
+async function friendsByUUID(uuid) {
+  if (uuid instanceof Promise) uuid = await uuid
+  const res = await fetch(`https://friends.skyblock.net/api/friends/get/uuid/${uuid}`, {method: "GET",})
+
+  return await res.json()
+
+}
+
 module.exports = {
   skywars,
   economy,
@@ -183,5 +197,7 @@ module.exports = {
   friendsByForumsID,
   friendsByIGN,
   forumsSearch,
-  playerCount
+  playerCount,
+  friendsByUUID,
+  getUUID,
 }
