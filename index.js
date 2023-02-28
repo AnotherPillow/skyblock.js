@@ -157,9 +157,7 @@ async function player(name) {
 
 async function friendsByIGN(name) {
   const {forums_user_id}= await player(name)
-  console.log(forums_user_id)
   const friends = await friendsByForumsID(forums_user_id)
-  console.log(friends)
 
   return friends
 }
