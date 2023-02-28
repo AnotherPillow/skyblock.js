@@ -27,7 +27,7 @@ export type SearchResultUser = {
     id: string
 }
 
-type PlayerData = {
+export type PlayerData = {
     uuid: string;
     last_username: string;
     last_username_pretty: string;
@@ -44,14 +44,63 @@ type Player = {
     data: PlayerData;
 };
 
+/**
+ * @description Returns a player list of skywars
+ * @example skyblock.skywars().then(result => console.log(result))
+ */
 export function skywars(): Promise<ServerInfo>
+
+/**
+ * @description Returns a player list of economy
+ * @example skyblock.economy().then(result => console.log(result))
+ */
 export function economy(): Promise<ServerInfo>
+
+/**
+ * @description Returns a player list of survival
+ * @example skyblock.survival().then(result => console.log(result))
+ * 
+ */
 export function survival(): Promise<ServerInfo>
 
-export function friendsByForumsID(forums_id: number): Promise<FriendsByID>
+/**
+ * @description Returns a player count of specific server
+ * @example skyblock.playerCount().then(result => console.log(result))
+ */
+export function playerCount(server: ServerList): Promise<ServerCount>
+
+/**
+ * @description Returns a friend list by forums id
+ * @example skyblock.friendsByForumsID("1").then(result => console.log(result))
+ */
+export function friendsByForumsID(forums_id: string): Promise<FriendsByID>
+
+/**
+ * @description Returns a friend list by minecraft username
+ * @example skyblock.friendsByIGN("NoobCrew").then(result => console.log(result))
+ */
+export function friendsByIGN(name: string): Promise<FriendsByID>
+
+/**
+ * @description Returns a friend list by UUID
+ * @example skyblock.friendsByUUID("1ba2d16f-3d11-4a1f-b214-09e83906e6b5").then(result => console.log(result))
+ */
+export function friendsByUUID(uuid: string): Promise<FriendsByID>
+
+/**
+ * @description Returns a list of forum members with the search query
+ * @example skyblock.forumsSearch("NoobCrew").then(result => console.log(result))
+ */
 export function forumsSearch(query: string): Promise<SearchResult>
 
+/**
+ * @description Returns in game information for specified name
+ * @example skyblock.player("NoobCrew").then(result => console.log(result))
+ */
 export function player(name: string): Promise<Player>
 
-export function friendsByIGN(name: string): Promise<FriendsByID>
-export function playerCount(server: ServerList): Promise<ServerCount>
+/**
+ * @description Returns the uuid of specified username
+ * @example skyblock.getUUID("NoobCrew").then(result => console.log(result))
+ */
+export function getUUID(name: string): Promise<string>
