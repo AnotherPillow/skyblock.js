@@ -126,12 +126,14 @@ async function forumsSearch(query) {
 
   var userResults = []
 
-  document.querySelectorAll("aside>.sidebar>div>.secondaryContent>ul>li>a.username").forEach((element) => {
+  document.querySelectorAll("aside>.sidebar>div>.secondaryContent>ul>li").forEach((element) => {
     userResults.push({
-      username: element.textContent,
-      id: element.href.split(".")[2].replace("/", "")
+      username: element.children[1].textContent,
+      id: element.children[1].href.split(".")[2].replace("/", ""),
+      title: element.children[2].textContent
     })
   })
+
   return {
     users: userResults
   }
@@ -188,6 +190,7 @@ async function friendsByUUID(uuid) {
   return await res.json()
 
 }
+
 
 module.exports = {
   skywars,
