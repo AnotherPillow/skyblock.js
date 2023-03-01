@@ -77,9 +77,10 @@ sb.friendsByForumsID("<FORUMS ID>").then(data => {
 
 Get current amount of players on a Noobcrew server
 
+A list of possible values can be found [here](./Skyblock%20NetworkConnector%20Server%20Names.md)
+
 ```js
 const sb = require("skyblock.js")
-//Possible values: mineverse, skyblock, skywars
 sb.playerCount("<SERVER NAME>").then(data => {
     console.log(data);
 })

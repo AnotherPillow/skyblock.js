@@ -1,6 +1,15 @@
 const fetch = require("node-fetch");
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
+const _networkConnectorServers = [
+  'skyblock-bungee-1',      'skyblock-bungee-2',
+  'skyblock-bungee-3',      'skyblock-hub-1',
+  'skyblock-hub-2',         'skyblock-skyblock',
+  'skyblock-economy',       'skyblock-classic',
+  'skyblock',               'skyblock-events',
+  'skywars',                'mineverse',
+]
+
 /*
   Hello! Welcome to the Skyblock API!
   Thanks to GreenJuzzy on Github and creationism for finding most of the endpoints!
@@ -170,17 +179,15 @@ async function friendsByIGN(name) {
   return friends
 }
 async function playerCount(server) {
-  //check if server is mineverse,skyblock or skywars
-  if (!["mineverse", "skyblock", "skywars"].includes(server)) return { error: "Invalid server" }
-
+  if (!_networkConnectorServers.includes(server)) return 'Invalid server'
   const res = await fetch(`https://nc.skyblock.net/playercount/group/${server}`, {
-    method: "GET",
-    headers: {
-      "Accept": "application/json, text/javascript, */*; q=0.01",
-    },
-  })
-  const {result} = await res.json()
-  return result
+      method: "GET",
+      headers: {
+        "Accept": "application/json, text/javascript, */*; q=0.01",
+      },
+    })
+    const {result} = await res.json()
+    return result
 }
 
 async function friendsByUUID(uuid) {
@@ -190,7 +197,6 @@ async function friendsByUUID(uuid) {
   return await res.json()
 
 }
-
 
 module.exports = {
   skywars,
@@ -203,4 +209,5 @@ module.exports = {
   playerCount,
   friendsByUUID,
   getUUID,
+  _networkConnectorServers,
 }
