@@ -10,6 +10,14 @@ A library for the skyblock.net api
 - Get information about a player by their IGN.
 - Get friends of a player by their IGN.
 
+### Installation
+
+```bash
+npm i skyblock.js
+```
+
+See below for usage.
+
 ### Usage
 
 Current Economy info
