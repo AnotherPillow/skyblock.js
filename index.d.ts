@@ -38,11 +38,18 @@ export type PlayerData = {
     };
 };
 
-type Player = {
+export type Player = {
     online: boolean;
     forums_user_id: number;
     data: PlayerData;
 };
+
+export type DownloadStats = {
+    key: string;
+    downloads: number;
+    id: string;
+}
+
 
 /**
  * @description Returns a player list of skywars
@@ -104,3 +111,8 @@ export function player(name: string): Promise<Player>
  * @example skyblock.getUUID("NoobCrew").then(result => console.log(result))
  */
 export function getUUID(name: string): Promise<string>
+/**
+ * @description Returns the skyblock download statistics
+ * @example skyblock.getStats().then(result => console.log(result))
+ */
+export function getStats(): Promise<Array<DownloadStats>>

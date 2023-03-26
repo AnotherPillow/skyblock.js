@@ -94,3 +94,12 @@ sb.friendsByUUID("<UUID>").then(data => {
     console.log(data);
 })
 ```
+
+Skyblock download stats
+
+```js
+const sb = require("skyblock.js")
+sb.getStats().then(data => {
+    console.log(data);
+})
+```

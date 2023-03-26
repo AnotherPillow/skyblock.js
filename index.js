@@ -197,6 +197,30 @@ async function friendsByUUID(uuid) {
     return await res.json()
 }
 
+async function getStats() {
+    const res = await fetch(`https://nc.skyblock.net/download/stats`, {
+        method: "GET",
+        headers: {
+            "Accept": "application/json, text/javascript, */*; q=0.01",
+        },
+    })
+    const result = await res.json()
+    //each element in map has the following:
+    /**
+     * {
+    "key": "skyblock-2.1.zip",
+    "n": 2,
+    "id": ""
+}
+     */
+    //convert n to be downloads
+    result.forEach((element) => {
+        element.downloads = element.n
+        delete element.n
+    })
+    return result
+}
+
 module.exports = {
   skywars,
   economy,
@@ -208,5 +232,6 @@ module.exports = {
   playerCount,
   friendsByUUID,
   getUUID,
+  getStats,
   _networkConnectorServers,
 }
