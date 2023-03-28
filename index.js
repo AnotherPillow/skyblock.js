@@ -197,7 +197,7 @@ async function friendsByUUID(uuid) {
     return await res.json()
 }
 
-async function getStats() {
+async function getDownloadStats() {
     const res = await fetch(`https://nc.skyblock.net/download/stats`, {
         method: "GET",
         headers: {
@@ -232,6 +232,6 @@ module.exports = {
   playerCount,
   friendsByUUID,
   getUUID,
-  getStats,
+  getDownloadStats,
   _networkConnectorServers,
 }

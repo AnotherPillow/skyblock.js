@@ -107,7 +107,7 @@ Skyblock download stats
 
 ```js
 const sb = require("skyblock.js")
-sb.getStats().then(data => {
+sb.getDownloadStats().then(data => {
     console.log(data);
 })
 ```
