@@ -221,17 +221,47 @@ async function getDownloadStats() {
     return result
 }
 
+async function getForumStats() {
+    const res = await fetch(`https://skyblock.net/forums/`, {
+        method: "GET",
+        headers: {
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+        },
+    })
+    const html = await res.text()
+    const document = new JSDOM(html).window.document;
+    let pairsJustified = document.querySelector(".pairsJustified")
+    let latestMember = pairsJustified.children[3].lastElementChild.lastElementChild
+
+    let result = {
+        discussions: parseInt(document.querySelector(".discussionCount").lastElementChild.textContent.replace(/,/g, "")) || 0,
+        messages: parseInt(document.querySelector(".messageCount").lastElementChild.textContent.replace(/,/g, "")) || 0,
+        members: parseInt(document.querySelector(".memberCount").lastElementChild.textContent.replace(/,/g, "")) || 0,
+        //there is a fourth child with no class
+        latestMember: {
+            username: latestMember.textContent,
+            id: parseInt(latestMember.href.split("/")[4].replace("/", "").split(".")[1])
+        },
+        mostOnlineUsers: parseInt(pairsJustified.lastElementChild.lastElementChild.textContent.replace(/,/g,""))
+    }
+
+    return result
+
+
+}
+
 module.exports = {
-  skywars,
-  economy,
-  survival,
-  player,
-  friendsByForumsID,
-  friendsByIGN,
-  forumsSearch,
-  playerCount,
-  friendsByUUID,
-  getUUID,
-  getDownloadStats,
-  _networkConnectorServers,
+    skywars,
+    economy,
+    survival,
+    player,
+    friendsByForumsID,
+    friendsByIGN,
+    forumsSearch,
+    playerCount,
+    friendsByUUID,
+    getUUID,
+    getDownloadStats,
+    getForumStats,
+    _networkConnectorServers,
 }
