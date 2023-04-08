@@ -180,7 +180,7 @@ async function friendsByIGN(name) {
 }
 async function playerCount(server) {
     if (!_networkConnectorServers.includes(server)) return 'Invalid server'
-    const res = await fetch(`https://nc.skyblock.net/playercount/group/${server}`, {
+    const res = await fetch(`https://nc.skyblock.net/playercount/server/${server}`, {
         method: "GET",
         headers: {
             "Accept": "application/json, text/javascript, */*; q=0.01",
