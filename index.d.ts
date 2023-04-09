@@ -50,6 +50,14 @@ export type DownloadStats = {
     id: string;
 }
 
+export type ForumStats = {
+    discussions: number;
+    messages: number;
+    members: number;
+    latestMember: { username: string, id: number };
+    mostOnlineUsers: number;
+}
+
 
 /**
  * @description Returns a player list of skywars
@@ -75,6 +83,12 @@ export function survival(): Promise<ServerInfo>
  * @example skyblock.playerCount().then(result => console.log(result))
  */
 export function playerCount(server: ServerList): Promise<ServerCount>
+
+/**
+ * @description Returns forum statistics
+ * @example skyblock.getForumStats().then(result => console.log(result))
+ */
+export function getForumStats(): Promise<ForumStats>
 
 /**
  * @description Returns a friend list by forums id
@@ -113,6 +127,6 @@ export function player(name: string): Promise<Player>
 export function getUUID(name: string): Promise<string>
 /**
  * @description Returns the skyblock download statistics
- * @example skyblock.getStats().then(result => console.log(result))
+ * @example skyblock.getDownloadStats().then(result => console.log(result))
  */
-export function getStats(): Promise<Array<DownloadStats>>
+export function getDownloadStats(): Promise<Array<DownloadStats>>
