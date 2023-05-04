@@ -111,3 +111,21 @@ sb.getDownloadStats().then(data => {
     console.log(data);
 })
 ```
+
+Staff list
+
+```js
+const sb = require("skyblock.js")
+sb.getStaff().then(data => {
+    console.log(data);
+})
+```
+
+Get User by UUID
+
+```js
+const sb = require("skyblock.js")
+sb.playerByUUID("<UUID>").then(data => {
+    console.log(data);
+})
+```

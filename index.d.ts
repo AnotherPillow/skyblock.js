@@ -58,6 +58,13 @@ export type ForumStats = {
     mostOnlineUsers: number;
 }
 
+export type Staff = {
+    uuid: string;
+    position: string;
+    since: string;
+    username: string;
+}
+
 
 /**
  * @description Returns a player list of skywars
@@ -130,3 +137,15 @@ export function getUUID(name: string): Promise<string>
  * @example skyblock.getDownloadStats().then(result => console.log(result))
  */
 export function getDownloadStats(): Promise<Array<DownloadStats>>
+
+/**
+ * @description Returns list of staff members
+ * @example skyblock.getStaff().then(result => console.log(result))
+ */
+export function getStaff(): Promise<Array<Staff>>
+
+/**
+ * @description Returns the user in skyblock's API
+ * @example skyblock.playerByUUID("1ba2d16f-3d11-4a1f-b214-09e83906e6b5").then(result => console.log(result))
+ */
+export function playerByUUID(uuid: string): Promise<Player>

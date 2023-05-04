@@ -151,10 +151,15 @@ async function forumsSearch(query) {
 async function player(name) {
   
     const uuid = await getUUID(name)
+
+    return await playerByUUID(uuid)
+
+}
+
+async function playerByUUID(uuid) {
     const res = await fetch(`https://friends.skyblock.net/api/friends/data/${uuid}`, {method: "GET",})
-
-    return await res.json()
-
+    const json = await res.json()
+    return json
 }
 
 async function getUUID(name) {
@@ -250,6 +255,27 @@ async function getForumStats() {
 
 }
 
+async function getStaff() {
+    const res = await fetch(`https://friends.skyblock.net/api/friends/staff`, {
+        method: "GET",
+        headers: {
+            "Accept": "application/json, text/javascript, */*; q=0.01",
+        },
+    })
+    const result = await res.json()
+    //return result after doing an async .map()
+    //require('fs').writeFileSync("./staff.json", JSON.stringify(result, null, 4))
+    return await Promise.all( 
+        result.map(async (element) => {
+            const username = await playerByUUID(element.uuid).then((res) => res.data.last_username_pretty)
+            console.log(username)
+            return {
+                ...element, username
+            }
+        })
+    )
+}
+
 module.exports = {
     skywars,
     economy,
@@ -263,5 +289,7 @@ module.exports = {
     getUUID,
     getDownloadStats,
     getForumStats,
+    getStaff,
+    playerByUUID,
     _networkConnectorServers,
 }
