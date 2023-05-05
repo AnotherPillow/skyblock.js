@@ -263,12 +263,9 @@ async function getStaff() {
         },
     })
     const result = await res.json()
-    //return result after doing an async .map()
-    //require('fs').writeFileSync("./staff.json", JSON.stringify(result, null, 4))
     return await Promise.all( 
         result.map(async (element) => {
             const username = await playerByUUID(element.uuid).then((res) => res.data.last_username_pretty)
-            console.log(username)
             return {
                 ...element, username
             }
