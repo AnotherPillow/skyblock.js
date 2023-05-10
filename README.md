@@ -129,3 +129,12 @@ sb.playerByUUID("<UUID>").then(data => {
     console.log(data);
 })
 ```
+
+Get User forums Info
+
+```js
+const sb = require("skyblock.js")
+sb.forumsUserInfo("<ID>").then(data => {
+    console.log(data);
+})
+```

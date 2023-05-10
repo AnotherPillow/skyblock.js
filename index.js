@@ -273,6 +273,84 @@ async function getStaff() {
     )
 }
 
+async function forumsUserInfo(userID) {
+    const res = await fetch(`https://skyblock.net/members/${userID}`, {
+        method: "GET",
+        headers: {
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+        },
+    })
+
+    const html = await res.text()
+    const document = new JSDOM(html).window.document;
+
+    if (document.querySelectorAll(".titleBar").length > 0) 
+        return {
+            error: document.querySelector('[for="ctrl_0"]').textContent
+        }
+    const username = document.querySelector('[itemprop="name"').children[0].textContent
+    const title = document.querySelector('.userTitle').textContent
+    const infoBoxes = document.querySelectorAll('[class="secondaryContent pairsJustified"]');
+    const lastActivity = infoBoxes[0].children[0].children[1].textContent
+    const joined = infoBoxes[0].children[1].children[1].textContent
+    const messageCount = parseInt(infoBoxes[0].children[2].children[1].textContent.replace(/,/g, ""))
+    const trophyPoints = parseInt(document.querySelector(`[href="members/${username.toLocaleLowerCase()}.${userID}/trophies"]`).textContent.replace(/,/g, ""))
+    const positiveReactions = parseInt(document.querySelector(".dark_postrating_positive").textContent.replace(/,/g, ""))
+    const negativeReactions = parseInt(document.querySelector(".dark_postrating_negative").textContent.replace(/,/g, ""))
+    const neutralReactions = parseInt(document.querySelector(".dark_postrating_neutral").textContent.replace(/,/g, ""))
+    let homePage = null
+    let location = null
+    let occupation = null
+    let gender = null;
+
+    for (const el of infoBoxes[1].children) {
+        switch (el.children[0].textContent) {
+            case "Home Page:":
+                homePage = el.children[1].textContent
+                break;
+            case "Location:":
+                location = el.children[1].textContent
+                break;
+            case "Occupation:":
+                occupation = el.children[1].textContent
+                break;
+            case "Gender:":
+                gender = el.children[1].textContent
+                break;
+            default:
+                break;
+        }
+    }
+
+    const previousNames = Array.from(document.querySelectorAll("#unc .dataRow"))
+        .filter(x=> x.children[0].textContent !== "From Name")
+        .map(function (el) {
+            const fromName = el.children[0].textContent
+            const toName = el.children[1].textContent
+            const date = el.children[2].children[0].textContent
+            return { fromName, toName, date }
+        })
+        
+
+    return {
+        username,
+        title,
+        lastActivity,
+        joined,
+        messageCount,
+        trophyPoints,
+        positiveReactions,
+        negativeReactions,
+        neutralReactions,
+        homePage,
+        location,
+        occupation,
+        gender,
+        previousNames,
+    }
+    
+}
+
 module.exports = {
     skywars,
     economy,
@@ -288,5 +366,6 @@ module.exports = {
     getForumStats,
     getStaff,
     playerByUUID,
+    forumsUserInfo,
     _networkConnectorServers,
 }

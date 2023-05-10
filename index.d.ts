@@ -65,6 +65,24 @@ export type Staff = {
     username: string;
 }
 
+export type UserInfo = {
+    error?: string;
+    username?: string;
+    title?: string;
+    lastActivity?: string;
+    joined?: string;
+    messageCount?: number;
+    trophyPoints?: number;
+    positiveReactions?: number;
+    neutralReactions?: number;
+    negativeReactions?: number;
+    homepage?: string | null;
+    location?: string | null;
+    occupation?: string | null;
+    gender?: string | null;
+    previousNames?: string[];
+}
+
 
 /**
  * @description Returns a player list of skywars
@@ -149,3 +167,9 @@ export function getStaff(): Promise<Array<Staff>>
  * @example skyblock.playerByUUID("1ba2d16f-3d11-4a1f-b214-09e83906e6b5").then(result => console.log(result))
  */
 export function playerByUUID(uuid: string): Promise<Player>
+
+/**
+ * @description Return's the user's forum information
+ * @example skyblock.forumsUserInfo("1").then(result => console.log(result)) 
+ */
+export function forumsUserInfo(id: string): Promise<UserInfo>
