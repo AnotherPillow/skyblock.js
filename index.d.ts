@@ -1,5 +1,7 @@
 export type ServerList = "skyblock-bungee-1" | "skyblock-bungee-2" | "skyblock-bungee-3" | "skyblock-hub-1" | "skyblock-hub-2" | "skyblock-skyblock" | "skyblock-economy" | "skyblock-classic" | "skyblock" | "skyblock-events" | "skywars" | "mineverse"
 
+export type ShortUpdatedServerList = "skyblock" | "economy"
+
 export type ServerCount = {
     result: number
 }
@@ -81,6 +83,21 @@ export type UserInfo = {
     occupation?: string | null;
     gender?: string | null;
     previousNames?: string[];
+}
+
+export type TraderItem = {
+    item: string;
+    maximumAmount: number;
+    maximumAmountPerPlayer: number;
+    value: number;
+}
+
+export type Traders = {
+    entityId: number;
+    active: boolean;
+    sellable: TraderItem[];
+    buyable: TraderItem[];
+
 }
 
 
@@ -173,3 +190,5 @@ export function playerByUUID(uuid: string): Promise<Player>
  * @example skyblock.forumsUserInfo("1").then(result => console.log(result)) 
  */
 export function forumsUserInfo(id: string): Promise<UserInfo>
+
+export function getTraders(server: ShortUpdatedServerList): Promise<Traders | null>

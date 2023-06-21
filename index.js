@@ -347,8 +347,21 @@ async function forumsUserInfo(userID) {
         occupation,
         gender,
         previousNames,
-    }
+    }    
+}
+
+async function getTraders(server) {
+    if (!["skyblock","economy"].includes(server)) return null;
+    const res = await fetch(`https://api.skyblock.net/traders?server=${server}`, {
+        method: "GET",
+        headers: {
+            "Accept": "application/json, text/javascript, */*; q=0.01",
+        },
+    })
     
+    const result = await res.json()
+
+    return result;
 }
 
 module.exports = {
@@ -367,5 +380,6 @@ module.exports = {
     getStaff,
     playerByUUID,
     forumsUserInfo,
+    getTraders,
     _networkConnectorServers,
 }
