@@ -1,5 +1,13 @@
 const fetch = require("node-fetch");
-const jsdom = require("jsdom");
+
+let jsdom = {}
+try {
+    jsdom = require("jsdom");
+} catch (e) {
+    jsdom = {JSDOM: null}
+}
+
+
 const { JSDOM } = jsdom;
 const _networkConnectorServers = [
     'skyblock-bungee-1',      'skyblock-bungee-2',
@@ -99,6 +107,7 @@ async function friendsByForumsID(forums_id) {
 }
 
 async function forumsSearch(query) {
+    if (!JSDOM) return {}
     const session = await fetch("https://skyblock.net/")
     var sessionID = session.headers.raw()['set-cookie'][0].split(";")[0].split("=")[1]
     
@@ -227,6 +236,7 @@ async function getDownloadStats() {
 }
 
 async function getForumStats() {
+    if (!JSDOM) return {}
     const res = await fetch(`https://skyblock.net/forums/`, {
         method: "GET",
         headers: {
@@ -274,6 +284,8 @@ async function getStaff() {
 }
 
 async function forumsUserInfo(userID) {
+    if (!JSDOM) return {}
+
     const res = await fetch(`https://skyblock.net/members/${userID}`, {
         method: "GET",
         headers: {

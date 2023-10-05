@@ -21,7 +21,7 @@ export type FriendsByID = {
 }
 
 export type SearchResult = {
-    users: SearchResultUser[]
+    users?: SearchResultUser[]
 }
 
 export type SearchResultUser = {
@@ -130,7 +130,7 @@ export function playerCount(server: ServerList): Promise<ServerCount>
  * @description Returns forum statistics
  * @example skyblock.getForumStats().then(result => console.log(result))
  */
-export function getForumStats(): Promise<ForumStats>
+export function getForumStats(): Promise<ForumStats | {}>
 
 /**
  * @description Returns a friend list by forums id
