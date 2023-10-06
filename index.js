@@ -168,7 +168,7 @@ async function player(name) {
 async function playerByUUID(uuid) {
     const res = await fetch(`https://friends.skyblock.net/api/friends/data/${uuid}`, {method: "GET",})
     const text = await res.text()
-    const ratelimited = t === 'limit exceeded'
+    const ratelimited = text === 'limit exceeded'
     if (ratelimited) console.log('sb.playerByUUID has encountered a ratelimit. Please slow down immediately.')
     const json = JSON.parse(ratelimited ? JSON.stringify({
         online: false,
