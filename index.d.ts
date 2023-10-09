@@ -21,7 +21,8 @@ export type FriendsByID = {
 }
 
 export type SearchResult = {
-    users?: SearchResultUser[]
+    users: SearchResultUser[],
+    _error?: string,
 }
 
 export type SearchResultUser = {

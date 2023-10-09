@@ -1,10 +1,12 @@
 const fetch = require("node-fetch");
 
 let jsdom = {}
+let jsdom_error = ''
 try {
     jsdom = require("jsdom");
 } catch (e) {
     jsdom = {JSDOM: null}
+    jsdom_error = e.toString()
 }
 
 
@@ -107,7 +109,10 @@ async function friendsByForumsID(forums_id) {
 }
 
 async function forumsSearch(query) {
-    if (!JSDOM) return {}
+    if (!JSDOM) return {
+        users: [],
+        _error: jsdom_error, 
+    }
     const session = await fetch("https://skyblock.net/")
     var sessionID = session.headers.raw()['set-cookie'][0].split(";")[0].split("=")[1]
     
@@ -131,6 +136,7 @@ async function forumsSearch(query) {
         "method": "POST",
         "mode": "cors"
     });
+
     const searchRes = await fetch(res.url, {
         headers: {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:106.0) Gecko/20100101 Firefox/106.0",
