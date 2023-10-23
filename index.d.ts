@@ -172,13 +172,13 @@ export function getUUID(name: string): Promise<string>
  * @description Returns the skyblock download statistics
  * @example skyblock.getDownloadStats().then(result => console.log(result))
  */
-export function getDownloadStats(): Promise<Array<DownloadStats>>
+export function getDownloadStats(): Promise<DownloadStats[]>
 
 /**
  * @description Returns list of staff members
  * @example skyblock.getStaff().then(result => console.log(result))
  */
-export function getStaff(): Promise<Array<Staff>>
+export function getStaff(): Promise<Staff[]>
 
 /**
  * @description Returns the user in skyblock's API
@@ -192,4 +192,6 @@ export function playerByUUID(uuid: string): Promise<Player>
  */
 export function forumsUserInfo(id: string): Promise<UserInfo>
 
-export function getTraders(server: ShortUpdatedServerList): Promise<Traders | null>
+export function getTraders(server: ShortUpdatedServerList): Promise<Traders?>
+
+export function UUIDToName(_uuid: string): Promise<string?>

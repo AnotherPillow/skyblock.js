@@ -138,3 +138,21 @@ sb.forumsUserInfo("<ID>").then(data => {
     console.log(data);
 })
 ```
+
+Get Current Trader Info
+
+```js
+const sb = require("skyblock.js")
+sb.getTraders("<server>").then(data => {
+    console.log(data);
+})
+```
+
+Convert UUID to IGN
+
+```js
+const sb = require("skyblock.js")
+sb.UUIDToName("<UUID>").then(data => {
+    console.log(data);
+})
+```

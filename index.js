@@ -398,6 +398,21 @@ async function getTraders(server) {
     return result;
 }
 
+async function UUIDToName(_uuid) {
+    const uuid = _uuid.replace(/-/g, '')
+
+    const res = await fetch(`https://sessionserver.mojang.com/session/minecraft/profile/${uuid}`, {
+        method: "GET",
+        headers: {
+            "Accept": "application/json, text/javascript, */*; q=0.01",
+        },
+    })
+
+    const result = await res.json()
+
+    return result.name ?? null
+}
+
 module.exports = {
     skywars,
     economy,
@@ -415,5 +430,7 @@ module.exports = {
     playerByUUID,
     forumsUserInfo,
     getTraders,
+    UUIDToName,
+
     _networkConnectorServers,
 }
