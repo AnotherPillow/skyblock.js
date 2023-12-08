@@ -413,6 +413,25 @@ async function UUIDToName(_uuid) {
     return result.name ?? null
 }
 
+function getAvatarURLFromForumsID(id) {
+    id = id.toString()
+    let shortuseridlen = 1;
+    if (id.length > 5) {
+        shortuseridlen = 3;
+    } else if (id.length > 4) {
+        shortuseridlen = 2;
+    }
+    let shortuserid = id.slice(0, shortuseridlen);
+
+    if (id.length <= 3) 
+        shortuserid = '0';
+    
+
+    let url =  `https://skyblock.net/data/avatars/l/${shortuserid}/${id}.jpg`;
+
+    return url
+}
+
 module.exports = {
     skywars,
     economy,
@@ -431,6 +450,7 @@ module.exports = {
     forumsUserInfo,
     getTraders,
     UUIDToName,
+    getAvatarURLFromForumsID,
 
     _networkConnectorServers,
 }

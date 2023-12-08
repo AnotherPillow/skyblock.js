@@ -195,3 +195,5 @@ export function forumsUserInfo(id: string): Promise<UserInfo>
 export function getTraders(server: ShortUpdatedServerList): Promise<Traders?>
 
 export function UUIDToName(_uuid: string): Promise<string?>
+
+export function getAvatarURLFromForumsID(id: string | Number): string
