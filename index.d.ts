@@ -1,4 +1,4 @@
-export type ServerList = "skyblock-bungee-1" | "skyblock-bungee-2" | "skyblock-bungee-3" | "skyblock-hub-1" | "skyblock-hub-2" | "skyblock-skyblock" | "skyblock-economy" | "skyblock-classic" | "skyblock" | "skyblock-events" | "skywars" | "mineverse"
+export type ServerList = "skyblock-bungee-1" | "skyblock-bungee-2" | "skyblock-bungee-3" | "skyblock-hub-1" | "skyblock-hub-2" | "skyblock-skyblock" | "skyblock-economy" | "skyblock-classic" | "skyblock" | "skyblock-events" | "skywars" | "mineverse" | "skyblock-beta"
 
 export type ShortUpdatedServerList = "skyblock" | "economy"
 
