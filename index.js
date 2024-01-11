@@ -306,7 +306,7 @@ async function getStaff() {
 }
 
 async function forumsUserInfo(userID) {
-    if (!JSDOM) return {}
+    if (!JSDOM) return {error: 'JSDOM not found. ' + jsdom_error}
 
     const res = await fetch(`https://skyblock.net/members/${userID}`, {
         method: "GET",
@@ -323,11 +323,12 @@ async function forumsUserInfo(userID) {
             error: document.querySelector('[for="ctrl_0"]').textContent
         }
     const username = document.querySelector('[itemprop="name"').children[0].textContent
-    const title = document.querySelector('.userTitle').textContent
+    const title = document.querySelector('.userTitle').textContent;
     const infoBoxes = document.querySelectorAll('[class="secondaryContent pairsJustified"]');
-    const lastActivity = infoBoxes[0].children[0].children[1].textContent
-    const joined = infoBoxes[0].children[1].children[1].textContent
-    const messageCount = parseInt(infoBoxes[0].children[2].children[1].textContent.replace(/,/g, ""))
+    const offset = 12 - infoBoxes[0].children.length
+    const lastActivity = offset == 0 ? infoBoxes[0].children[0].children[1].textContent : undefined
+    const joined = infoBoxes[0].children[1 - offset].children[1].textContent
+    const messageCount = parseInt(infoBoxes[0].children[2 - offset].children[1].textContent.replace(/,/g, ""))
     const trophyPoints = parseInt(document.querySelector(`[href="members/${username.toLocaleLowerCase()}.${userID}/trophies"]`).textContent.replace(/,/g, ""))
     const positiveReactions = parseInt(document.querySelector(".dark_postrating_positive").textContent.replace(/,/g, ""))
     const negativeReactions = parseInt(document.querySelector(".dark_postrating_negative").textContent.replace(/,/g, ""))
