@@ -84,6 +84,7 @@ export type UserInfo = {
     occupation?: string | null;
     gender?: string | null;
     previousNames?: string[];
+    description?: string;
 }
 
 export type TraderItem = {

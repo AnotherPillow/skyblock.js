@@ -333,6 +333,7 @@ async function forumsUserInfo(userID) {
     const positiveReactions = parseInt(document.querySelector(".dark_postrating_positive").textContent.replace(/,/g, ""))
     const negativeReactions = parseInt(document.querySelector(".dark_postrating_negative").textContent.replace(/,/g, ""))
     const neutralReactions = parseInt(document.querySelector(".dark_postrating_neutral").textContent.replace(/,/g, ""))
+    const description = document.querySelector('li#info').textContent.replace(/\n\s*\n/g, '\n').replace(/\t/g, '')
     let homePage = null
     let location = null
     let occupation = null
@@ -382,6 +383,7 @@ async function forumsUserInfo(userID) {
         occupation,
         gender,
         previousNames,
+        description,
     }    
 }
 
