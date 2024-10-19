@@ -197,8 +197,8 @@ export function playerByUUID(uuid: string): Promise<Player>
  */
 export function forumsUserInfo(id: string): Promise<UserInfo>
 
-export function getTraders(server: ShortUpdatedServerList): Promise<Traders?>
+export function getTraders(server: ShortUpdatedServerList): Promise<Traders | undefined>
 
-export function UUIDToName(_uuid: string): Promise<string?>
+export function UUIDToName(_uuid: string): Promise<string | undefined>
 
 export function getAvatarURLFromForumsID(id: string | Number): string
