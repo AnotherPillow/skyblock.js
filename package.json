@@ -2,10 +2,10 @@
   "dependencies": {
     "@types/node-fetch": "^2.6.6",
     "jsdom": "^20.0.2",
-    "node-fetch": "2.6"
+    "undici": "^6.15.0"
   },
   "name": "skyblock.js",
-  "version": "1.4.4",
+  "version": "1.5.0",
   "description": "An API wrapper in node.js for skyblock.net",
   "main": "index.js",
   "scripts": {

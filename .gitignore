@@ -4,3 +4,4 @@ pytest.py
 NetworkConnector Servers.md
 staff.json
 temp*.json
+benchmark*.js

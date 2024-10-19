@@ -1,4 +1,4 @@
-const fetch = require("node-fetch");
+const { fetch } = require("undici");
 
 let jsdom = {}
 let jsdom_error = ''
@@ -29,10 +29,10 @@ async function skywars() {
     const res = await fetch("https://skyblock.net/index.php?server-status/7/query", {
         method: "POST",
         headers: {
-        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-        "Accept": "application/json, text/javascript, */*; q=0.01",
-        "Accept-Encoding": "gzip, deflate, br",
-        "Accept-Language": "en-US,en;q=0.9,no;q=0.8",
+            "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+            "Accept": "application/json, text/javascript, */*; q=0.01",
+            "Accept-Encoding": "gzip, deflate, br",
+            "Accept-Language": "en-US,en;q=0.9,no;q=0.8",
         },
         body: "_xfRequestUri=%2F&_xfNoRedirect=1&_xfResponseType=json"
     })
@@ -50,10 +50,10 @@ async function economy() {
     const res = await fetch("https://skyblock.net/index.php?server-status/6/query", {
         method: "POST",
         headers: {
-        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-        "Accept": "application/json, text/javascript, */*; q=0.01",
-        "Accept-Encoding": "gzip, deflate, br",
-        "Accept-Language": "en-US,en;q=0.9,no;q=0.8",
+            "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+            "Accept": "application/json, text/javascript, */*; q=0.01",
+            "Accept-Encoding": "gzip, deflate, br",
+            "Accept-Language": "en-US,en;q=0.9,no;q=0.8",
         },
         body: "_xfRequestUri=%2F&_xfNoRedirect=1&_xfResponseType=json"
     })
@@ -114,7 +114,7 @@ async function forumsSearch(query) {
         _error: jsdom_error, 
     }
     const session = await fetch("https://skyblock.net/")
-    var sessionID = session.headers.raw()['set-cookie'][0].split(";")[0].split("=")[1]
+    var sessionID = session.headers.get('set-cookie').split(";")[0].split("=")[1]
     
     const res = await fetch("https://skyblock.net/search/search", {
         "credentials": "include",
@@ -166,6 +166,7 @@ async function forumsSearch(query) {
 async function player(name) {
   
     const uuid = await getUUID(name)
+    if (!uuid) return {}
 
     return await playerByUUID(uuid)
 
@@ -203,6 +204,7 @@ async function getUUID(name) {
 
     let UUIDdashesregex = /([a-z0-9]{8})([a-z0-9]{4})([a-z0-9]{4})([a-z0-9]{4})([a-z0-9]{12})/g
     const { id } = await UUID.json()
+    if (!id) return undefined;
     let uuid = id.replace(UUIDdashesregex, "$1-$2-$3-$4-$5")
 
     return uuid

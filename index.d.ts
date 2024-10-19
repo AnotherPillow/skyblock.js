@@ -47,6 +47,10 @@ export type Player = {
     data: PlayerData;
 };
 
+export type PlayerError = {
+    error: string;
+}
+
 export type DownloadStats = {
     key: string;
     downloads: number;
@@ -162,13 +166,13 @@ export function forumsSearch(query: string): Promise<SearchResult>
  * @description Returns in game information for specified name
  * @example skyblock.player("NoobCrew").then(result => console.log(result))
  */
-export function player(name: string): Promise<Player>
+export function player(name: string): Promise<Player | PlayerError | {}>
 
 /**
  * @description Returns the uuid of specified username
  * @example skyblock.getUUID("NoobCrew").then(result => console.log(result))
  */
-export function getUUID(name: string): Promise<string>
+export function getUUID(name: string): Promise<string | undefined>
 /**
  * @description Returns the skyblock download statistics
  * @example skyblock.getDownloadStats().then(result => console.log(result))
