@@ -437,6 +437,19 @@ function getAvatarURLFromForumsID(id) {
     return url
 }
 
+async function getFriendsHealth() {
+    const res = await fetch(`https://friends.skyblock.net/api/health`, {
+        method: "GET",
+        headers: {
+            "Accept": "application/json, text/javascript, */*; q=0.01",
+        },
+    })
+
+    const result = await res.json()
+
+    return result
+}
+
 module.exports = {
     skywars,
     economy,
@@ -456,6 +469,7 @@ module.exports = {
     getTraders,
     UUIDToName,
     getAvatarURLFromForumsID,
+    getFriendsHealth,
 
     _networkConnectorServers,
 }

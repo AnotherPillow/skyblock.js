@@ -103,7 +103,10 @@ export type Traders = {
     active: boolean;
     sellable: TraderItem[];
     buyable: TraderItem[];
+}
 
+export type Health = {
+    ok: boolean;
 }
 
 
@@ -202,3 +205,5 @@ export function getTraders(server: ShortUpdatedServerList): Promise<Traders | un
 export function UUIDToName(_uuid: string): Promise<string | undefined>
 
 export function getAvatarURLFromForumsID(id: string | Number): string
+
+export function getFriendsHealth(): Promise<Health>

@@ -156,3 +156,12 @@ sb.UUIDToName("<UUID>").then(data => {
     console.log(data);
 })
 ```
+
+Get friends API Health
+
+```js
+const sb = require("skyblock.js")
+sb.getFriendsHealth().then(data => {
+    console.log(data);
+})
+```
