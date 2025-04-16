@@ -15,9 +15,15 @@ export type ServerInfo = {
 
 export type FriendsByID = {
     success: boolean,
-    player: object,
-    married: boolean,
-    friends: object,
+    player: {
+        [key: string]: string
+    },
+    married: {
+        [key: string]: string
+    },
+    friends: {
+        [key: string]: string
+    },
 }
 
 export type SearchResult = {
