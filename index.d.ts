@@ -20,10 +20,10 @@ export type FriendsByID = {
     },
     married: {
         [key: string]: string
-    },
+    } | null,
     friends: {
         [key: string]: string
-    },
+    } | null,
 }
 
 export type SearchResult = {
