@@ -1,4 +1,4 @@
-const { fetch } = require("undici");
+const fetch = typeof globalThis.fetch == 'function' ? globalThis.fetch : require("undici").fetch // undici doesn't work in some cases so only use when needed
 
 let jsdom = {}
 let jsdom_error = ''
@@ -322,10 +322,10 @@ async function forumsUserInfo(userID) {
 
     if (document.querySelectorAll(".titleBar").length > 0) 
         return {
-            error: document.querySelector('[for="ctrl_0"]').textContent
+            error: document.querySelector('[for="ctrl_0"]')?.textContent
         }
     const username = document.querySelector('[itemprop="name"').children[0]?.textContent
-    const title = document.querySelector('.userTitle').textContent;
+    const title = document.querySelector('.userTitle')?.textContent;
     const infoBoxes = document.querySelectorAll('[class="secondaryContent pairsJustified"]');
     const offset = 12 - (infoBoxes[0]?.children.length??0)
     const lastActivity = offset == 0 ? infoBoxes[0]?.children[0]?.children[1]?.textContent : undefined
@@ -335,14 +335,14 @@ async function forumsUserInfo(userID) {
     const positiveReactions = parseInt(document.querySelector(".dark_postrating_positive").textContent?.replace(/,/g, "") ?? 0)
     const negativeReactions = parseInt(document.querySelector(".dark_postrating_negative").textContent?.replace(/,/g, "") ?? 0)
     const neutralReactions = parseInt(document.querySelector(".dark_postrating_neutral").textContent?.replace(/,/g, "") ?? 0)
-    const description = document.querySelector('li#info').textContent.replace(/\n\s*\n/g, '\n').replace(/\t/g, '')
+    const description = document.querySelector('li#info').textContent?.replace(/\n\s*\n/g, '\n').replace(/\t/g, '')
     let homePage = null
     let location = null
     let occupation = null
     let gender = null;
 
-    for (const el of infoBoxes[1].children) {
-        switch (el.children[0].textContent) {
+    for (const el of (infoBoxes[1]?.children??[])) {
+        switch (el?.children[0]?.textContent) {
             case "Home Page:":
                 homePage = el.children[1].textContent
                 break;
@@ -363,9 +363,9 @@ async function forumsUserInfo(userID) {
     const previousNames = Array.from(document.querySelectorAll("#unc .dataRow"))
         .filter(x=> x.children[0].textContent !== "From Name")
         .map(function (el) {
-            const fromName = el.children[0].textContent
-            const toName = el.children[1].textContent
-            const date = el.children[2].children[0].textContent
+            const fromName = el.children[0]?.textContent
+            const toName = el.children[1]?.textContent
+            const date = el.children[2]?.children[0]?.textContent
             return { fromName, toName, date }
         })
         
