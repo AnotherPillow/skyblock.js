@@ -324,17 +324,17 @@ async function forumsUserInfo(userID) {
         return {
             error: document.querySelector('[for="ctrl_0"]').textContent
         }
-    const username = document.querySelector('[itemprop="name"').children[0].textContent
+    const username = document.querySelector('[itemprop="name"').children[0]?.textContent
     const title = document.querySelector('.userTitle').textContent;
     const infoBoxes = document.querySelectorAll('[class="secondaryContent pairsJustified"]');
-    const offset = 12 - infoBoxes[0].children.length
-    const lastActivity = offset == 0 ? infoBoxes[0].children[0].children[1].textContent : undefined
-    const joined = infoBoxes[0].children[1 - offset].children[1].textContent
-    const messageCount = parseInt(infoBoxes[0].children[2 - offset].children[1].textContent.replace(/,/g, ""))
-    const trophyPoints = parseInt(document.querySelector(`[href="members/${username.toLocaleLowerCase()}.${userID}/trophies"]`).textContent.replace(/,/g, ""))
-    const positiveReactions = parseInt(document.querySelector(".dark_postrating_positive").textContent.replace(/,/g, ""))
-    const negativeReactions = parseInt(document.querySelector(".dark_postrating_negative").textContent.replace(/,/g, ""))
-    const neutralReactions = parseInt(document.querySelector(".dark_postrating_neutral").textContent.replace(/,/g, ""))
+    const offset = 12 - (infoBoxes[0]?.children.length??0)
+    const lastActivity = offset == 0 ? infoBoxes[0]?.children[0]?.children[1]?.textContent : undefined
+    const joined = infoBoxes[0]?.children[1 - offset]?.children[1]?.textContent
+    const messageCount = parseInt(infoBoxes[0]?.children[2 - offset]?.children[1]?.textContent.replace(/,/g, "") ?? 0)
+    const trophyPoints = parseInt(document.querySelector(`[href="members/${username.toLocaleLowerCase()}.${userID}/trophies"]`)?.textContent?.replace(/,/g, "") ?? 0)
+    const positiveReactions = parseInt(document.querySelector(".dark_postrating_positive").textContent?.replace(/,/g, "") ?? 0)
+    const negativeReactions = parseInt(document.querySelector(".dark_postrating_negative").textContent?.replace(/,/g, "") ?? 0)
+    const neutralReactions = parseInt(document.querySelector(".dark_postrating_neutral").textContent?.replace(/,/g, "") ?? 0)
     const description = document.querySelector('li#info').textContent.replace(/\n\s*\n/g, '\n').replace(/\t/g, '')
     let homePage = null
     let location = null
