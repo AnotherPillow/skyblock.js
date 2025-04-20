@@ -331,7 +331,7 @@ async function forumsUserInfo(userID) {
     const lastActivity = offset == 0 ? infoBoxes[0]?.children[0]?.children[1]?.textContent : undefined
     const joined = infoBoxes[0]?.children[1 - offset]?.children[1]?.textContent
     const messageCount = parseInt(infoBoxes[0]?.children[2 - offset]?.children[1]?.textContent.replace(/,/g, "") ?? 0)
-    const trophyPoints = parseInt(document.querySelector(`[href="members/${username.toLocaleLowerCase()}.${userID}/trophies"]`)?.textContent?.replace(/,/g, "") ?? 0)
+    const trophyPoints = parseInt(document.querySelector(`[href="members/${username?.toLocaleLowerCase()}.${userID}/trophies"]`)?.textContent?.replace(/,/g, "") ?? 0)
     const positiveReactions = parseInt(document.querySelector(".dark_postrating_positive").textContent?.replace(/,/g, "") ?? 0)
     const negativeReactions = parseInt(document.querySelector(".dark_postrating_negative").textContent?.replace(/,/g, "") ?? 0)
     const neutralReactions = parseInt(document.querySelector(".dark_postrating_neutral").textContent?.replace(/,/g, "") ?? 0)
