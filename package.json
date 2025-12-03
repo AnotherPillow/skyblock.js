@@ -20,5 +20,9 @@
     "skyblock"
   ],
   "author": "AnotherPillow",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "tsdown": "^0.12.9",
+    "typescript": "^5.9.3"
+  }
 }
