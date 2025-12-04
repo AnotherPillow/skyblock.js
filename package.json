@@ -1,27 +1,23 @@
 {
-  "dependencies": {
-    "jsdom": "^20.0.2"
-  },
-  "optionalDependencies": {
-    "undici": "^6.15.0"
-  },
   "name": "skyblock.js",
-  "version": "1.5.3",
+  "version": "2.0.0",
   "description": "An API wrapper in node.js for skyblock.net",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsdown"
   },
   "repository": {
     "type": "git",
     "url": "github.com/AnotherPillow/skyblock.js"
   },
   "keywords": [
-    "skyblock"
+    "skyblock",
+    "minecraft"
   ],
   "author": "AnotherPillow",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
+    "@types/node": "^24.10.1",
     "tsdown": "^0.12.9",
     "typescript": "^5.9.3"
   }

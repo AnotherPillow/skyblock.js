@@ -1,0 +1,141 @@
+[
+  {
+    "id": "blossom",
+    "biomes": [
+      {
+        "id": "blossom",
+        "display-name": "&cBlossom",
+        "description": "Heart Particles"
+      },
+      {
+        "id": "blossom-no_particles",
+        "display-name": "&cBlossom",
+        "description": "No Particles"
+      }
+    ]
+  },
+  {
+    "id": "dream",
+    "biomes": [
+      {
+        "id": "dream",
+        "display-name": "&bDream",
+        "description": "Water Particles"
+      },
+      {
+        "id": "dream-no_particles",
+        "display-name": "&bDream",
+        "description": "No Particles"
+      }
+    ]
+  },
+  {
+    "id": "white_void",
+    "biomes": [
+      {
+        "id": "white_void",
+        "display-name": "&fWhite Void",
+        "description": "Ash Particles, Music"
+      },
+      {
+        "id": "white_void-no_settings",
+        "display-name": "&fWhite Void",
+        "description": "No Settings"
+      },
+      {
+        "id": "white_void-no_particles",
+        "display-name": "&fWhite Void",
+        "description": "No Particles"
+      },
+      {
+        "id": "white_void-no_music",
+        "display-name": "&fWhite Void",
+        "description": "No Music"
+      }
+    ]
+  },
+  {
+    "id": "toxic_wasteland",
+    "biomes": [
+      {
+        "id": "toxic_wasteland",
+        "display-name": "&6Toxic Wasteland",
+        "description": "Totem Particles"
+      },
+      {
+        "id": "toxic_wasteland-no_particles",
+        "display-name": "&6Toxic Wasteland",
+        "description": "No Particles"
+      }
+    ]
+  },
+  {
+    "id": "pastel",
+    "biomes": [
+      {
+        "id": "pastel",
+        "display-name": "&aPastel"
+      }
+    ]
+  },
+  {
+    "id": "winter_wonderland",
+    "biomes": [
+      {
+        "id": "winter_wonderland",
+        "display-name": "&fWinter Wonderland",
+        "description": "Snow Weather"
+      },
+      {
+        "id": "winter_wonderland-no_settings",
+        "display-name": "&fWinder Wonderland",
+        "description": "No Settings"
+      }
+    ]
+  },
+  {
+    "id": "lavender",
+    "biomes": [
+      {
+        "id": "lavender",
+        "display-name": "&dLavender"
+      }
+    ]
+  },
+  {
+    "id": "alpha",
+    "biomes": [
+      {
+        "id": "alpha",
+        "display-name": "&aAlpha"
+      }
+    ]
+  },
+  {
+    "id": "alpha_4",
+    "biomes": [
+      {
+        "id": "alpha_4",
+        "display-name": "&aAlpha 4"
+      }
+    ]
+  },
+  {
+    "id": "white",
+    "biomes": [
+      {
+        "id": "white",
+        "display-name": "&fWhite"
+      }
+    ]
+  },
+  {
+    "id": "space_gray",
+    "biomes": [
+      {
+        "id": "space_gray",
+        "display-name": "&7Space Gray"
+      }
+    ]
+  }
+]
