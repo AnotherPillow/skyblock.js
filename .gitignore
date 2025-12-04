@@ -5,3 +5,4 @@ NetworkConnector Servers.md
 staff.json
 temp*.json
 benchmark*.js
+dist/
