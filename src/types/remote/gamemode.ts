@@ -1,6 +1,6 @@
 export interface FullGamemodeInfoResponse {
     name: string,
-    type: 'GAMEMODE', // not sure what else
+    Type: 'GAMEMODE', // not sure what else
     online: boolean,
     uptime: number,
     /**
@@ -11,12 +11,22 @@ export interface FullGamemodeInfoResponse {
     uniquePlayers: number,
     metrics: {
         /**
-         * @description Stored very accurately.
+         * @description last 1/5/10/15m
          */
-        tps: number,
+        tps: number[],
+        freeMemory: number[],
+        loadedChunks: number[],
+        loadedEntities: number[],
+        loadedTiles: number[],
+        maxMemory: number[],
+        mstp: number[],
+        processors: number[],
+        tickableTiles: number[],
+        totalMemory: number[],
     },
     /**
      * @description A list of dashed UUIDS
      */
-    players: string[]
+    players: string[],
+    data: string
 }
