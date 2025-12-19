@@ -10,6 +10,8 @@ export * from './api/island/coop'
 export * from './api/player/info'
 export * from './api/player/relationships'
 
+
 export * from './types'
 
 export { VERSION } from './util/info'
+export * from './util/extern'
