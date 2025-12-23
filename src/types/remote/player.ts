@@ -33,13 +33,10 @@ export interface FullPlayerResponse {
          */
         connectVersion: string, 
         connectGamemode: GameMode,
-        /**
-         * @description Host before SRV record, including port - e.g. skyblock.net:25565
-         */
         switchGamemode: GameMode,
         switchGamemodeTs: number,
         /**
-         * @description Host before SRV record, including port - e.g. skyblock.net:25565
+         * @description In seconds. Multiply by 1000 to feed into `new Date()`
          */
         disconnectTs: number,
         disconnectGamemode: GameMode,

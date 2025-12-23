@@ -7,6 +7,8 @@ export async function getGamemode(gamemode: GameMode): Promise<FullGamemodeInfoR
 
     const data = await res.json()
 
+
+    // clean up minor typos in a way that won't break if they're fixed properly
     if (data.Type) {
         data.type = data.type
         delete data.Type
