@@ -5,5 +5,17 @@ import fetcher from "../../util/fetcher";
 export async function getGamemode(gamemode: GameMode): Promise<FullGamemodeInfoResponse> {
     const res = await fetcher(`https://api.skyblock.net/gamemode/${gamemode}`)
 
-    return await res.json()
+    const data = await res.json()
+
+    if (data.Type) {
+        data.type = data.type
+        delete data.Type
+    }
+
+    if (data.metrics && data.metrics.mstp) {
+        data.metrics.mspt = data.metrics.mstp
+        delete data.metrics.mstp
+    }
+
+    return data
 }

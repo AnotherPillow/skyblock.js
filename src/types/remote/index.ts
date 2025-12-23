@@ -1,4 +1,4 @@
-export type GameMode = 'skyblock' | 'economy'
+export type GameMode = 'skyblock' | 'economy' | 'sb-hub-1' | 'sb-bungee-1' | 'sb-bungee-2' | '' | (string & {})
 
 export * from './coop'
 export * from './gamemode'

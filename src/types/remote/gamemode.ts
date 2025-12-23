@@ -1,6 +1,6 @@
 export interface FullGamemodeInfoResponse {
     name: string,
-    Type: 'GAMEMODE', // not sure what else
+    type: 'GAMEMODE', // Yes, that's uppercase. It'll change at some point in the future
     online: boolean,
     uptime: number,
     /**
@@ -19,7 +19,7 @@ export interface FullGamemodeInfoResponse {
         loadedEntities: number[],
         loadedTiles: number[],
         maxMemory: number[],
-        mstp: number[],
+        mspt: number[],
         processors: number[],
         tickableTiles: number[],
         totalMemory: number[],
@@ -28,5 +28,8 @@ export interface FullGamemodeInfoResponse {
      * @description A list of dashed UUIDS
      */
     players: string[],
-    data: string
+    /**
+     * @description unclear what use will be, however - might be `"arena starting in..." things like that, its useful for stuff like mob arena`
+     */
+    data: string 
 }
