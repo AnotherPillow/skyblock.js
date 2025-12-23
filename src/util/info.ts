@@ -1,0 +1,1 @@
+export const VERSION = process.env.PACKAGE_VERSION; //gets replaced at build
