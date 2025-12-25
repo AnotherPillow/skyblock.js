@@ -28,10 +28,10 @@ export interface FullRelationshipsResponse {
     /**
      * One element
      */
-    marriage: Relationship[],
-    friends: Relationship[],
+    marriage: Relationship[] | null,
+    friends: Relationship[] | null,
     /**
      * One element
      */
-    players: Player[]
+    players?: Player[]
 }

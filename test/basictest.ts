@@ -1,3 +1,5 @@
 import sb from '../dist'
 
-const health = sb.getApiHealth()
+const health = await sb.getApiHealth()
+console.log(health)
+console.log({ props: { server: { ...(await sb.getGamemode(sb.Gamemodes.skyblock)), name: 'skyblock' } } })

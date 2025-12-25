@@ -1,7 +1,10 @@
-export interface FullGamemodeInfoResponse {
+export interface SuccessfullFullGamemodeInfoResponse {
     name: string,
-    type: 'GAMEMODE', // Yes, that's uppercase. It'll change at some point in the future
-    online: boolean,
+    type: 'GAMEMODE',
+    /**
+     * @description whether the server is online or not
+     */
+    status: boolean,
     uptime: number,
     /**
      * @description In seconds. Multiply by 1000 to feed into `new Date()`
@@ -17,6 +20,9 @@ export interface FullGamemodeInfoResponse {
         freeMemory: number[],
         loadedChunks: number[],
         loadedEntities: number[],
+        /**
+         * @description item frames!
+         */
         loadedTiles: number[],
         maxMemory: number[],
         mspt: number[],
@@ -31,5 +37,15 @@ export interface FullGamemodeInfoResponse {
     /**
      * @description unclear what use will be, however - might be `"arena starting in..." things like that, its useful for stuff like mob arena`
      */
-    data: string 
+    data: string
+}
+
+export interface ErrorGamemodeInfoResponse {
+    error: string
+}
+
+export type FullGamemodeInfoResponse = SuccessfullFullGamemodeInfoResponse | Error
+
+export function isGamemodeOnline(response: FullGamemodeInfoResponse): response is SuccessfullFullGamemodeInfoResponse {
+    return !Object.hasOwn(response, 'error')
 }

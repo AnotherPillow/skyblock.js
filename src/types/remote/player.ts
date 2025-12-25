@@ -15,7 +15,7 @@ export interface FullPlayerResponse {
      */
     updatedTs: number,
     status: {
-        connectPing: number,
+        connectPing?: number,
         /**
          * @description In seconds. Multiply by 1000 to feed into `new Date()`
          */
@@ -27,11 +27,11 @@ export interface FullPlayerResponse {
         /**
          * @description Host before SRV record, including port - e.g. skyblock.net:25565
          */
-        connectHost: string,
+        connectHost?: string,
         /**
          * @description Protocol version - list located at https://minecraft.wiki/w/Protocol_version#Java_Edition_2
          */
-        connectVersion: string, 
+        connectVersion?: string, 
         connectGamemode: GameMode,
         switchGamemode: GameMode,
         switchGamemodeTs: number,
@@ -40,9 +40,5 @@ export interface FullPlayerResponse {
          */
         disconnectTs: number,
         disconnectGamemode: GameMode,
-        /**
-         * @description May get omitted in future. Use with caution. Stringified java class. e.g. `"Location{world=CraftWorld{name=skyworld},x=21.72778164162466,y=66.0,z=0.5668415381804838,pitch=11.600031,yaw=-97.55067}"`
-         */
-        disconnectLocation: string,
     }
 }

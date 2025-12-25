@@ -6,3 +6,7 @@ export async function getRelationships(uuid: string): Promise<FullRelationshipsR
 
     return await res.json()
 }
+
+export function findRelationshipPartner(self: string, pair: [string, string]): string | null {
+    return pair.find(x => x != self) ?? null
+}
