@@ -32,13 +32,22 @@ export interface FullPlayerResponse {
          * @description Protocol version - list located at https://minecraft.wiki/w/Protocol_version#Java_Edition_2
          */
         connectVersion?: string, 
+        /**
+         * @description Gamemode the player last joined onto
+         */
         connectGamemode: GameMode,
+        /**
+         * @description Gamemode they are currently connected to (is **not** an indicator of online status)
+         */
         switchGamemode: GameMode,
         switchGamemodeTs: number,
         /**
          * @description In seconds. Multiply by 1000 to feed into `new Date()`
          */
         disconnectTs: number,
+        /**
+         * @description Last gamemode the player disconnected while online on
+         */
         disconnectGamemode: GameMode,
     }
 }
