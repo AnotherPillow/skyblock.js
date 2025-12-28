@@ -10,6 +10,7 @@ export * from './api/island/coop'
 export * from './api/player/info'
 export * from './api/player/relationships'
 
+export * from './api/downloads/info'
 
 export * from './types'
 
