@@ -1,6 +1,7 @@
 export const Gamemodes = {
     skyblock: 'skyblock' as 'skyblock',
     economy: 'economy' as 'economy',
+    mobarena: 'mobarena' as 'mobarena',
     "sb-hub-1": 'sb-hub-1' as 'sb-hub-1',
     "sb-bungee-1": 'sb-bungee-1' as 'sb-bungee-1',
     "sb-bungee-2": 'sb-bungee-2' as 'sb-bungee-2',
