@@ -2,7 +2,7 @@ import { GameMode } from ".";
 
 export type PlayerType = 'JAVA' | 'BEDROCK' | 'UNKNOWN' | 'FV3_IMPORT'
 
-export interface FullPlayerResponse {
+export interface IFullPlayerResponse {
     mojangUsername: string,
     mojangUsernamePretty: string,
     discordId: string, // unknown how this is calculated
@@ -49,5 +49,45 @@ export interface FullPlayerResponse {
          * @description Last gamemode the player disconnected while online on
          */
         disconnectGamemode: GameMode,
+    }
+}
+
+type PlayerStatus = IFullPlayerResponse["status"] & {
+    readonly connectTime: Date;
+    readonly connectFirstTime: Date;
+    readonly disconnectTime: Date;
+    readonly switchGamemodeTime: Date;
+};
+
+export class PlayerReponse implements IFullPlayerResponse {
+    mojangUsername!: string;
+    mojangUsernamePretty!: string;
+    discordId!: string;
+    forumsId!: number;
+    favouriteGamemode!: GameMode;
+    nextGamemode!: GameMode;
+    type!: PlayerType;
+    updatedTs!: number;
+    status!: PlayerStatus;
+
+    constructor(res: IFullPlayerResponse) {
+        Object.assign(this, {
+            ...res,
+            status: {
+                ...res.status,
+                get connectTime(): Date {
+                    return new Date(this.connectTs * 1000)
+                },
+                get connectFirstTime(): Date {
+                    return new Date(this.connectFirstTs * 1000)
+                },
+                get disconnectTime(): Date {
+                    return new Date(this.disconnectTs * 1000)
+                },
+                get switchGamemodeTime(): Date {
+                    return new Date(this.switchGamemodeTs * 1000)
+                },
+            }
+        });
     }
 }

@@ -6,3 +6,5 @@ console.log({ props: { server: { ...(await sb.getGamemode(sb.Gamemodes.skyblock)
 
 
 console.log(await sb.getDownloadStats())
+
+console.log((await sb.getPlayer((await sb.util.mojang.getUUIDFromName('cPillow'))!)).status.switchGamemodeTime)

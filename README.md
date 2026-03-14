@@ -20,6 +20,4 @@ See below for usage.
 
 ### Usage
 
-Current Economy info
-
 Just see typedefs for now
