@@ -57,6 +57,7 @@ type PlayerStatus = IFullPlayerResponse["status"] & {
     readonly connectFirstTime: Date;
     readonly disconnectTime: Date;
     readonly switchGamemodeTime: Date;
+    readonly isOnline: boolean;
 };
 
 export class PlayerReponse implements IFullPlayerResponse {
@@ -87,6 +88,22 @@ export class PlayerReponse implements IFullPlayerResponse {
                 get switchGamemodeTime(): Date {
                     return new Date(this.switchGamemodeTs * 1000)
                 },
+                /**
+                 * @description should manage the many, many edge cases
+                 */
+                get isOnline(): boolean {
+                    if (!res.status || !this.connectVersion ) return false; // not sure in what context connectVersion will be null anymore
+                    
+                    // console.log(this.switchGamemodeTs, this.disconnectTs, this.connectTs)
+                    const latestEventKey = ['switchGamemodeTs', 'disconnectTs', 'connectTs'].find(k => (this as any)[k] == res.updatedTs);
+                    // console.log(latestEventKey)
+
+                    //                                                     somehow nufon is online with these being 1s off
+                    if ((this.switchGamemodeTs == this.disconnectTs || Math.abs(this.switchGamemodeTs - this.disconnectTs) < 2) && this.connectTs == res.updatedTs) return true;
+                    if ((this.switchGamemodeTs == this.disconnectTs || this.switchGamemodeTs == this.connectTs)) return true;
+
+                    return false;
+                }
             }
         });
     }

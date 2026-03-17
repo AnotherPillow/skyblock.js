@@ -7,8 +7,13 @@ import fetcher from "../util/fetcher";
  * @returns true if healthy, based on http status
  */
 export const getApiHealth = async (): Promise<boolean> => {
-    const res = await fetcher('https://api.skyblock.net/health') // does not return content !!
-    return res.status == 200
+    try {
+        const res = await fetcher('https://api.skyblock.net/health') // does not return content !!
+        return res.status == 200
+    } catch (e) {
+        // probably isn't healthy, at least to the client, if it's throwing
+        return false;
+    }
 }
 
 export const listGameModes = async (): Promise<GameMode[]> => {
