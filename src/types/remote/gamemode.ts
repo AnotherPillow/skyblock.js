@@ -12,7 +12,7 @@ export interface SuccessfullFullGamemodeInfoResponse {
     updateTs: number,
     playerCount: number,
     uniquePlayers: number,
-    metrics: {
+    metrics: {} | {
         /**
          * @description last 1/5/10/15m
          */
