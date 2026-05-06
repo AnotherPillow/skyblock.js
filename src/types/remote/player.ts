@@ -89,7 +89,7 @@ export class PlayerReponse implements IFullPlayerResponse {
                     return new Date(this.switchGamemodeTs * 1000)
                 },
                 /**
-                 * @description should manage the many, many edge cases
+                 * @description should manage the many, many edge cases - except it doesnt
                  */
                 get isOnline(): boolean {
                     if (!res.status || !this.connectVersion ) return false; // not sure in what context connectVersion will be null anymore
