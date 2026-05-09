@@ -56,7 +56,7 @@ export class Application {
     /**
      * 
      * @param playerUUID dashed uuid
-     * @param message mustn't have special characters (!, :, ], &) (for now)
+     * @param message mustn't have some special characters (], [) (for now)
      */
     public async messagePlayer(playerUUID: string, message: string): Promise<void> {
         if (!this.hasAuthenticated) throw new UnauthenticatedError('tried to call messagePlayer(...) without running auth() first')
