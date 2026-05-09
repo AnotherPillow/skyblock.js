@@ -6,3 +6,5 @@ staff.json
 temp*.json
 benchmark*.js
 dist/
+
+test/secrets.json

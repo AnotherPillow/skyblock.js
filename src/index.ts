@@ -12,6 +12,8 @@ export * from './api/player/relationships'
 
 export * from './api/downloads/info'
 
+export * from './api/app'
+
 export * from './types'
 
 export { VERSION } from './util/info'
